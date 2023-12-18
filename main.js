@@ -1,3 +1,8 @@
+let playerScore = 0;
+let computerScore = 0;
+
+let gameOver = (playerScore, computerScore) => (playerScore === 5 || computerScore === 5);
+
 //function to get the computer's choice
 function getComputerChoice() {
     let options = ["rock", "paper", "scissors"]
@@ -13,12 +18,11 @@ function getPlayerChoice(){
 }
 
 // check for validity in player's choice 
-let checkChoice = (playerChoice) => {
+let validChoice = (playerChoice) => {
     return playerChoice == "rock" || playerChoice == "paper" || playerChoice == "scissors";
 }
 
-let computerChoice = getComputerChoice();
-let playerChoice = getPlayerChoice();
+
 
 
 // Compute the outcome of the round
@@ -67,10 +71,56 @@ function playRound(playerChoice, computerChoice) {
     if (res == message[2]){
         return res;
     } else if (res == message[0]){
+        playerScore++;
         return `${res} ${playerChoice} beats ${computerChoice}.`
     } else {
+        computerScore++;
         return `${res} ${computerChoice} beats ${playerChoice}.`
     }
 }
 
+function getWinner(playerScore, computerScore){
+    if (playerScore == 5){
+        console.log("Game Over!: Player wins!!!")
+    } else if (computerScore == 5){
+        console.log("Game Over!: Computer Wins!!")
+    }
+    
+}
+
+function askReplay() {
+    let choice = prompt("Would you like to play again? (Yes | No): ").toLowerCase();
+    return choice;
+}
+
+let printInvlidChoiceMessage = () => alert("Invalid Choice, please re-enter your choice");
+
+function game() {
+
+    while (!gameOver(playerScore, computerScore)){ // keep playing game until one party wins
+        let computerChoice = getComputerChoice();
+        let playerChoice = getPlayerChoice();
+    
+        // Keep asking for user input while the user input is invalid
+        while (!validChoice(playerChoice)){
+            printInvlidChoiceMessage();
+            playerChoice = getPlayerChoice();
+        }
+
+        console.log(playRound(playerChoice, computerChoice));
+        console.log(`Player: ${playerScore}\nComputer: ${computerScore}`);
+        
+        getWinner(playerScore, computerScore);
+        
+        if (gameOver(playerScore, computerScore)) {
+            let replayChoice = askReplay();
+
+            while (replayChoice != "yes" && replayChoice != "no"){
+                printInvlidChoiceMessage();
+                replayChoice = askReplay();
+            }
+        }
+    }
+}
+game();
 //console.log(playRound(playerChoice, computerChoice));
