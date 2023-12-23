@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+div {
+    width: 100%;
+}
+
+
+@media (max-width: 480px) {
+    btn {
+        width: 100px;
+        height: 100px;
+        font-size: 75px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+    
+}
+
+@media (max-width: 767px) {
+    .btn {
+        width: 150px;
+        height: 150px;
+        font-size: 75px;
+    }
+}
+
+@media (min-width: 768px) {
+    .btn {
+        width: 200px;
+        height: 200px;
+        font-size: 100px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .btn {
+        width: 250px;
+        height: 250px;
+        font-size: 125px;
+    }
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+
+.scoreMessage {
+    font-size: 40px;
+}
