@@ -24,10 +24,6 @@ let validChoice = (playerChoice) => {
     return playerChoice == 'rock' || playerChoice == 'paper' || playerChoice == 'scissors';
 }
 
-
-
-
-
 function playRound(playerChoice, computerChoice) {
     const message = ['You Win!', 'You Lose!', "It's A Tie!"]; // store possible messages indicating result of the round
 
@@ -52,7 +48,7 @@ function playRound(playerChoice, computerChoice) {
             messagePanel.textContent = `${message[1]} ${capitalizeFirstLetter(playerChoice)} beats ${capitalizeFirstLetter(computerChoice)}.`;
         }
     else {
-        messagePanel.textContent = `${message[2]} you both chose ${capitalizeFirstLetter(playerChoice)}s.`;
+        messagePanel.textContent = `${message[2]} you both chose ${capitalizeFirstLetter(playerChoice)}.`;
     }
 }
 
@@ -92,8 +88,6 @@ function askReplay() {
     let choice = prompt('Would you like to play again? (Yes | No): ').toLowerCase();
     return choice;
 }
-
-let printInvalidChoiceMessage = () => alert('Invalid Choice, please re-enter your choice');
 
 // LOG: Working on linking button click events to game choice uncomment once done
 /*function game() {

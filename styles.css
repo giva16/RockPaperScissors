@@ -12,9 +12,26 @@ div {
     width: 100%;
 }
 
+.title {
+    font-family: Saira, 'Times New Roman', Calibri;
+    text-align: center;
+    padding: 30px 0;
+}
+
+span:nth-child(1){
+    color: red;
+}
+
+span:nth-child(2) {
+    color: green;
+}
+
+span:nth-child(3) {
+    color: blue;
+}
 
 @media (max-width: 480px) {
-    btn {
+    .btn, #playerChoice, #computerChoice {
         width: 100px;
         height: 100px;
         font-size: 75px;
@@ -24,35 +41,50 @@ div {
         flex-direction: column;
     }
     
+    .title {
+        font-size: 20px;
+    }
+    
 }
 
 @media (max-width: 767px) {
-    .btn {
+    .btn, #playerChoice, #computerChoice {
         width: 150px;
         height: 150px;
         font-size: 75px;
     }
+
+    .title {
+        font-size: 50px;
+    }
 }
 
 @media (min-width: 768px) {
-    .btn {
+    .btn, #playerChoice, #computerChoice {
         width: 200px;
         height: 200px;
         font-size: 100px;
     }
+
+    .title {
+        font-size: 64px;
+    }
 }
 
 @media (min-width: 1200px) {
-    .btn {
+    .btn, #playerChoice, #computerChoice {
         width: 250px;
         height: 250px;
         font-size: 125px;
     }
 }
 
-.controls {
+
+
+.controls, .roundChoice {
     display: flex;
     justify-content: center;
+    padding: 0px 20px;
     gap: 50px;
 }
 
