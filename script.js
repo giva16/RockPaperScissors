@@ -2,6 +2,14 @@
 let playerScore = 0;
 let computerScore = 0;
 
+// UI Selectors
+const messagePanel = document.querySelector('.roundMessage');   // Panel where message displayed for each round result
+const playerChoicePanel = document.querySelector("#playerChoice");  // Panel to show the sign that the player have chosen
+const computerChoicePanel = document.querySelector("#computerChoice"); // Panel to show 
+const playerScoreTracker = document.querySelector("#playerScore");
+const computerScoreTracker = document.querySelector("#computerScore");
+const controls = document.querySelector('.controls');
+
 // boolean to check if there are winners in the game and the game must be over
 let gameOver = (playerScore, computerScore) => (playerScore === 5 || computerScore === 5);
 
@@ -54,8 +62,6 @@ const capitalizeFirstLetter = (word) => {
 }
 
 function updateMessage(winner, playerChoice, computerChoice) {
-    // select panel to display result of the round to the UI
-    let messagePanel = document.querySelector('.scoreMessage');
     if (winner == 'computer'){
         messagePanel.textContent = `You lose! ${capitalizeFirstLetter(computerChoice)} beats ${capitalizeFirstLetter(playerChoice)}.`;
     } else if (winner = 'player') {
@@ -65,8 +71,7 @@ function updateMessage(winner, playerChoice, computerChoice) {
     }
 }
 
-let playerChoicePanel = document.querySelector("#playerChoice");
-let computerChoicePanel = document.querySelector("#computerChoice");
+
 
 function updateChoice(playerChoice, computerChoice){
     // setting the image of the choice panel to correspond to computer's and player's chocie
@@ -76,31 +81,17 @@ function updateChoice(playerChoice, computerChoice){
     computerChoicePanel.textContent = choiceEmoji[computerChoice];
 }
 
-//select controls div, where the input buttons are
-const controls = document.querySelector('.controls');
+function updateScore() {
+    playerScoreTracker.textContent = "Player: " + playerScore;
+    computerScoreTracker.textContent = "Computer: " + computerScore;
+}
 
-// Event listener to controls div so that when a user clicks one of its buttons, the player's choice will be inputed
-controls.addEventListener('click', function(e) {
-    switch (e.target.id){
-        case 'btnRock':
-            playRound('rock', getComputerChoice());
-            break;
-        case 'btnPaper':
-            playRound('paper', getComputerChoice());
-            break;
-        case 'btnScissors':
-            playRound('scissors', getComputerChoice());
-            break;
-    }
-    
-});
-
-// assist in printing the correct message depending on who wins
-function getWinner(playerScore, computerScore){
+// checking if there is a winner and alert message to display who wins the game
+function getWinner(){
     if (playerScore == 5){
-        console.log('Game Over!: Player wins!!!')
+        alert('Game Over!: Player wins!!!')
     } else if (computerScore == 5){
-        console.log('Game Over!: Computer Wins!!')
+        alert('Game Over!: Computer Wins!!')
     }
     
 }
@@ -110,34 +101,22 @@ function askReplay() {
     return choice;
 }
 
-// LOG: Working on linking button click events to game choice uncomment once done
-/*function game() {
-    
-    // loop over the gameover condition so that player can keep playing until they win or lose
-    while (!gameOver(playerScore, computerScore)){
-        let computerChoice = getComputerChoice();
-        //let playerChoice = getPlayerChoice();
-    
-        // loop to Keep asking for user input while the user input is invalid
-        while (!validChoice(playerChoice)){
-            printInvalidChoiceMessage();
-            playerChoice = getPlayerChoice();
+function game() {
+    // Event listener to controls div so that when a user clicks one of its buttons, the player's choice will be inputed
+    controls.addEventListener('click', function(e) {
+        switch (e.target.id){
+            case 'btnRock':
+                playRound('rock', getComputerChoice());
+                break;
+            case 'btnPaper':
+                playRound('paper', getComputerChoice());
+                break;
+            case 'btnScissors':
+                playRound('scissors', getComputerChoice());
+                break;
         }
-
-        console.log(playRound(playerChoice, computerChoice));
-        console.log(`Player: ${playerScore}\nComputer: ${computerScore}`);
-        
-        getWinner(playerScore, computerScore);
-        
-        if (gameOver(playerScore, computerScore)) {
-            let replayChoice = askReplay();
-
-            // loop to keep asking for player's choice for replay until they give a valid choice
-            while (replayChoice != "yes" && replayChoice != "no"){
-                printInvlidChoiceMessage();
-                replayChoice = askReplay();
-            }
-        }
-    }
-}*/
-//game();
+        updateScore();
+        getWinner()
+    });
+}
+game();

@@ -44,6 +44,10 @@ span:nth-child(3) {
     .title {
         font-size: 20px;
     }
+
+    #computerScore, #playerScore {
+        font-size: 30px;
+    }
     
 }
 
@@ -76,6 +80,10 @@ span:nth-child(3) {
         width: 250px;
         height: 250px;
         font-size: 125px;
+    }
+
+    #computerScore, #playerScore {
+        font-size: 30px;
     }
 }
 
