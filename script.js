@@ -8,10 +8,15 @@ const playerChoicePanel = document.querySelector("#playerChoice");  // Panel to 
 const computerChoicePanel = document.querySelector("#computerChoice"); // Panel to show 
 const playerScoreTracker = document.querySelector("#playerScore");
 const computerScoreTracker = document.querySelector("#computerScore");
-const controls = document.querySelector('.controls');
+const controls = document.querySelector('.controls'); // div where all the choice buttons are contained
+const btnRock = document.querySelector('#btnRock');
+const btnPaper = document.querySelector('#btnPaper');
+const btnScissors = document.querySelector('#btnScissors'); 
+const endGameMessage = document.querySelector('.endMessage');
+const playAgainPanel = document.querySelector('.playAgain');
 
 // boolean to check if there are winners in the game and the game must be over
-let gameOver = (playerScore, computerScore) => (playerScore === 5 || computerScore === 5);
+let gameOver = () => (playerScore === 5 || computerScore === 5);
 
 // generates a random integer between 0-2 to get the computer's choice for the game
 function getComputerChoice() {
@@ -89,11 +94,10 @@ function updateScore() {
 // checking if there is a winner and alert message to display who wins the game
 function getWinner(){
     if (playerScore == 5){
-        alert('Game Over!: Player wins!!!')
+        endGameMessage.textContent = 'Game Over!: You Win!';
     } else if (computerScore == 5){
-        alert('Game Over!: Computer Wins!!')
+        endGameMessage.textContent = 'Game Over!: You Lose!';
     }
-    
 }
 
 function askReplay() {
@@ -116,7 +120,18 @@ function game() {
                 break;
         }
         updateScore();
-        getWinner()
+
+        if (gameOver()) {
+            getWinner();
+            endGameState();
+        }
     });
 }
+
+function endGameState() {
+    btnRock.disabled = true;
+    btnPaper.disabled = true;
+    btnScissors.disabled = true;
+}
+
 game();
