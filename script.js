@@ -15,7 +15,6 @@ function getComputerChoice() {
 
 function getPlayerChoice(){
     let choice = prompt('Enter your choice (Rock | Paper | Scissors):').toLowerCase();
-
     return choice;
 }
 
@@ -25,10 +24,7 @@ let validChoice = (playerChoice) => {
 }
 
 function playRound(playerChoice, computerChoice) {
-    const message = ['You Win!', 'You Lose!', "It's A Tie!"]; // store possible messages indicating result of the round
-
-    // select panel to display result of the round to the UI
-    let messagePanel = document.querySelector('.scoreMessage');
+    let winner = '';
 
     // compute results of player choice vs computer's choice
     if (
@@ -37,7 +33,7 @@ function playRound(playerChoice, computerChoice) {
         (playerChoice == 'scissors' && computerChoice == 'paper')
         ){
             playerScore++;
-            messagePanel.textContent = `${message[0]} ${capitalizeFirstLetter(playerChoice)} beats ${capitalizeFirstLetter(computerChoice)}.`
+            winner = 'player';
         }
     else if (
         (playerChoice == 'rock' && computerChoice == 'paper') || 
@@ -45,15 +41,39 @@ function playRound(playerChoice, computerChoice) {
         (playerChoice == 'scissors' && computerChoice == 'rock')
         ){
             computerScore++;
-            messagePanel.textContent = `${message[1]} ${capitalizeFirstLetter(playerChoice)} beats ${capitalizeFirstLetter(computerChoice)}.`;
+            winner = 'computer';
+        } else {
+            winner = '';
         }
-    else {
-        messagePanel.textContent = `${message[2]} you both chose ${capitalizeFirstLetter(playerChoice)}.`;
-    }
+    updateChoice(playerChoice, computerChoice);
+    updateMessage(winner, playerChoice, computerChoice);
 }
 
 const capitalizeFirstLetter = (word) => {
     return word[0].toUpperCase() + word.slice(1, word.length);
+}
+
+function updateMessage(winner, playerChoice, computerChoice) {
+    // select panel to display result of the round to the UI
+    let messagePanel = document.querySelector('.scoreMessage');
+    if (winner == 'computer'){
+        messagePanel.textContent = `You lose! ${capitalizeFirstLetter(computerChoice)} beats ${capitalizeFirstLetter(playerChoice)}.`;
+    } else if (winner = 'player') {
+        messagePanel.textContent = `You win! ${capitalizeFirstLetter(playerChoice)} beats ${capitalizeFirstLetter(computerChoice)}.`;
+    } else {
+        messagePanel.textContent = `It's a tie! you both chose ${playerChoice}.`;
+    }
+}
+
+let playerChoicePanel = document.querySelector("#playerChoice");
+let computerChoicePanel = document.querySelector("#computerChoice");
+
+function updateChoice(playerChoice, computerChoice){
+    // setting the image of the choice panel to correspond to computer's and player's chocie
+    let choiceEmoji = {'rock': "👊", 'paper': "✋", 'scissors': "✌️"};
+    
+    playerChoicePanel.textContent = choiceEmoji[playerChoice];
+    computerChoicePanel.textContent = choiceEmoji[computerChoice];
 }
 
 //select controls div, where the input buttons are
@@ -72,6 +92,7 @@ controls.addEventListener('click', function(e) {
             playRound('scissors', getComputerChoice());
             break;
     }
+    
 });
 
 // assist in printing the correct message depending on who wins
