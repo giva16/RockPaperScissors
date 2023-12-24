@@ -5,7 +5,18 @@
 }
 
 body {
+    background-color: rgba(0, 29, 61, 0.9);
+    font-family: 'Roboto', 'Times New Roman', Calibri;
+    color: white;
     height: 100vh;
+}
+
+main {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
 }
 
 div {
@@ -13,9 +24,11 @@ div {
 }
 
 .title {
+    background-color: rgba(0, 8, 20, 1);
     font-family: Saira, 'Times New Roman', Calibri;
     text-align: center;
     padding: 30px 0;
+    margin-bottom: 30px;
 }
 
 span:nth-child(1){
@@ -29,6 +42,78 @@ span:nth-child(2) {
 span:nth-child(3) {
     color: blue;
 }
+
+.roundChoice {
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+#playerChoice, #computerChoice, #playerScore, #computerScore {
+    width: 100%;
+}
+
+#playerChoice, #computerChoice {
+    position: relative;
+    bottom: -10%;
+}
+
+#player, #computer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.scoreMessage {
+    font-size: 40px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    padding: 0px 20px;
+    gap: 80px;
+}
+
+.btn {
+    all:unset;
+    text-align: center;
+    background-color: rgba(255, 195, 0, 0.5);
+    padding: 0px 10px 10px 10px;
+}
+
+.btn:hover, .replay:hover {
+    cursor: pointer;
+    background-color: rgba(255, 195, 0, 0.7);
+}
+
+.btn:active, .replay:active {
+    background-color: rgba(255, 195, 0, 1);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    background-color: gray;
+}
+
+.roundMessage {
+    text-align: center;
+    padding: 20px 0;
+    font-weight: 900;
+    margin-bottom: -30px;
+}
+
+.replay {
+    all: unset;
+    text-align: center;
+    color: black;
+    border-radius: 10px;
+    align-self: center;
+    background-color: rgba(255, 195, 0, 0.5);
+}
+
 
 @media (max-width: 480px) {
     .btn, #playerChoice, #computerChoice {
@@ -76,27 +161,35 @@ span:nth-child(3) {
 }
 
 @media (min-width: 1200px) {
-    .btn, #playerChoice, #computerChoice {
-        width: 250px;
-        height: 250px;
-        font-size: 125px;
+    #playerChoice, #computerChoice {
+        width: 150px;
+        height: 150px;
+        font-size: 80px;
+    }
+
+    .btn {
+        width: 150px;
+        height: 150px;
+        font-size: 80px;
+        border-radius: 10%;
     }
 
     #computerScore, #playerScore {
         font-size: 30px;
     }
-}
 
+    .roundMessage {
+        font-size: 32px;
+    }
 
+    .roundMessage p {
+        margin-top: 10px;
+        font-weight: 300;
+        font-size: 24px;
+    }
 
-.controls, .roundChoice {
-    display: flex;
-    justify-content: center;
-    padding: 0px 20px;
-    gap: 50px;
-}
-
-
-.scoreMessage {
-    font-size: 40px;
+    .replay {
+        font-size: 32px;
+        padding: 10px 30px;
+    }
 }

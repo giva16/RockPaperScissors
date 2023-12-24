@@ -8,6 +8,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Saira:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
         <title>Rock Paper Scissors</title>
     </head>
     <body>
@@ -16,22 +17,28 @@
             <span>Paper</span>
             <span>Scissors</span>
         </div>
-        <div class="roundChoice">
-            <div id="playerChoice">❓</div>
-            <div id="computerChoice">❓</div>
-        </div>
-        <div class="scores">
-            <p id="playerScore">Player: 0</p>
-            <p id="computerScore">Computer: 0</p>
-        </div>
-        <div class="roundMessage"></div>
-        <div class="controls">
-            <button class="btn" id="btnRock">👊</button>
-            <button class="btn" id="btnPaper">✋</button>
-            <button class="btn" id="btnScissors">✌️</button>
-        </div>
-        <div class="endMessage"></div>
-        <div class="playAgain"></div>
+        <main>
+            <div class="roundMessage">
+                Choose Your Sign and Choose Wisely!
+                <p>First to score 5 points wins the game</p>
+            </div>
+            <div class="roundChoice">
+                <div id="player">
+                    <p id="playerChoice">❓</p>
+                    <p id="playerScore"></p>
+                </div>
+                <div id="computer">
+                    <p id="computerChoice">❓</p>
+                    <p id="computerScore"></p>
+                </div>
+            </div>
+            <button id="btnReplay" class="replay">Play Again</button>
+            <div class="controls">
+                <button class="btn" id="btnRock">👊</button>
+                <button class="btn" id="btnPaper">✋</button>
+                <button class="btn" id="btnScissors">✌️</button>
+            </div>
+        </main>
         <script src="./script.js"></script>
     </body>
 </html>
