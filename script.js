@@ -35,6 +35,7 @@ let validChoice = (playerChoice) => {
     return playerChoice == 'rock' || playerChoice == 'paper' || playerChoice == 'scissors';
 }
 
+// TODO : optimize by using a lookup table
 function playRound(playerChoice, computerChoice) {
     let winner = '';
 
@@ -66,7 +67,7 @@ const capitalizeFirstLetter = (word) => {return word[0].toUpperCase() + word.sli
 function updateMessage(winner, playerChoice, computerChoice) {
     if (winner == 'computer'){
         messagePanel.textContent = `You lose! ${capitalizeFirstLetter(computerChoice)} beats ${capitalizeFirstLetter(playerChoice)}.`;
-    } else if (winner = 'player') {
+    } else if (winner == 'player') {
         messagePanel.textContent = `You win! ${capitalizeFirstLetter(playerChoice)} beats ${capitalizeFirstLetter(computerChoice)}.`;
     } else {
         messagePanel.textContent = `It's a tie! you both chose ${playerChoice}.`;
